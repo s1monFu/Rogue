@@ -42,7 +42,24 @@ public class PlayerAttack : MonoBehaviour
 
     private void Shoot(float x, float y)
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
+        float bulletX = transform.position.x;
+        float bulletY = transform.position.y;
+        if(x > 0)
+        {
+            bulletX += 1;
+        }else if (x < 0)
+        {
+            bulletX -= 1;
+        }
+
+        if(y > 0)
+        {
+            bulletY += 1;
+        }else if (y < 0)
+        {
+            bulletY -= 1;
+        }
+        GameObject bullet = Instantiate(bulletPrefab, new Vector3(bulletX,bulletY,transform.position.z), transform.rotation) as GameObject;
         bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
             (x < 0) ? Mathf.Floor(x) * bulletSpeed : Mathf.Ceil(x) * bulletSpeed,
