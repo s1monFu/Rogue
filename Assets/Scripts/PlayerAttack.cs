@@ -25,7 +25,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ProcessInput();
     }
 
     private void ProcessInput() 
@@ -36,6 +36,7 @@ public class PlayerAttack : MonoBehaviour
         if ((shootX != 0 || shootY != 0) && Time.time > lastFire + fireDelay)
         {
             Shoot(shootX, shootY);
+            lastFire = Time.time;
         }
     }
 
@@ -44,6 +45,10 @@ public class PlayerAttack : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
         bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
-            (x < 0 ?))
+            (x < 0) ? Mathf.Floor(x) * bulletSpeed : Mathf.Ceil(x) * bulletSpeed,
+            (y < 0) ? Mathf.Floor(y) * bulletSpeed : Mathf.Ceil(y) * bulletSpeed,
+            0
+        );
+
     }
 }
