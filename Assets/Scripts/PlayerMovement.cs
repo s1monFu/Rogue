@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     #region Public Field
     public float moveSpeed;
     public Rigidbody2D rb;
+    public Text coinText;
+    public static int coinCnt = 0;
     #endregion
 
     #region private Field
@@ -25,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         ProcessInput();
+        coinText.text = "Coin: " + coinCnt;
     }
 
     private void FixedUpdate()

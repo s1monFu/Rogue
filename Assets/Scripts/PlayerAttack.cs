@@ -42,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Shoot(float x, float y)
     {
+        // Get instantiate position for bullet
         float bulletX = transform.position.x;
         float bulletY = transform.position.y;
         if(x > 0)
@@ -59,6 +60,8 @@ public class PlayerAttack : MonoBehaviour
         {
             bulletY -= 1;
         }
+
+        // Instantiate bullet
         GameObject bullet = Instantiate(bulletPrefab, new Vector3(bulletX,bulletY,transform.position.z), transform.rotation) as GameObject;
         bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
